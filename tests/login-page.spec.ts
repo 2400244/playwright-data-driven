@@ -24,6 +24,14 @@ interface TestData {
   LoginData: TestDataRow[];
 }
 
+// Create default test data structure
+const defaultTestData: TestData = {
+  LoginData: [
+    { username: 'invalidUser', password: 'invalidPass', expected: 'Invalid credentials' },
+    { username: '', password: 'somePassword', expected: 'Required' }
+  ]
+};
+
 test.describe('LoginPageTests', () => {
   let testData: TestData;
 
@@ -36,13 +44,8 @@ test.describe('LoginPageTests', () => {
       testData = JSON.parse(fileContent);
     } catch (error) {
       console.error(`Failed to load test data from ${dataPath}:`, error);
-      // Create default test data structure if file doesn't exist
-      testData = {
-        LoginData: [
-          { username: 'invalidUser', password: 'invalidPass', expected: 'Invalid credentials' },
-          { username: '', password: 'somePassword', expected: 'Username cannot be empty' }
-        ]
-      };
+      // Use default test data structure if file doesn't exist
+      testData = defaultTestData;
     }
   });
 
