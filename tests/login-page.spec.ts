@@ -46,9 +46,9 @@ test.describe('LoginPageTests', () => {
     }
   });
 
-  test('invalidCredentials', async ({ page }) => {
+  test('invalidCredentials', async ({ page, baseURL }) => {
     const objLoginPage = new LoginPage(page);
-    await page.goto('/');
+    await page.goto(baseURL || 'https://opensource-demo.orangehrmlive.com/');
     
     const rowData = testData.LoginData[0];
     const username = rowData.username;
@@ -61,9 +61,9 @@ test.describe('LoginPageTests', () => {
     await expect(actualResponse).toBe(expectedResponse);
   });
 
-  test('missingUsername', async ({ page }) => {
+  test('missingUsername', async ({ page, baseURL }) => {
     const objLoginPage = new LoginPage(page);
-    await page.goto('/');
+    await page.goto(baseURL || 'https://opensource-demo.orangehrmlive.com/');
     
     const rowData = testData.LoginData[1];
     const username = rowData.username;
