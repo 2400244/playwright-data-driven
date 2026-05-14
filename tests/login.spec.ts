@@ -10,7 +10,7 @@ test.describe('Login', () => {
   });
 
   test('Verify valid credentials allow successful login', async ({ loginPage, homePage }) => {
-    await loginPage.login('valid_username', 'valid_password');
-    await expect(homePage.homePageUserName).toBeVisible();
+    await loginPage.login('Admin', 'admin123');
+    await expect(homePage.homePageUserName).toBeVisible({ timeout: 10000 });
   });
 });
